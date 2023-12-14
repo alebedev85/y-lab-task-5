@@ -8,6 +8,7 @@ import LocaleSelect from "../../containers/locale-select";
 import Account from '../../components/account';
 import ProfileData from '../../components/profile-data';
 import useSelector from '../../hooks/use-selector';
+import Spinner from "../../components/spinner";
 import { useNavigate } from "react-router-dom";
 
 /**
@@ -51,7 +52,9 @@ function Profile() {
         <LocaleSelect />
       </Head>
       <Navigation />
-      <ProfileData user={select.user} t={t} />
+      <Spinner active={select.waiting}>
+        <ProfileData user={select.user} t={t} />
+      </Spinner>
     </PageLayout>
   );
 }

@@ -5,7 +5,7 @@ import './style.css'
 
 function LoginForm(props) {
   const t = props.t;
-  const cn = bem('loginForm')
+  const cn = bem('LoginForm')
   const login = useRef('login')
   const password = useRef('password')
 

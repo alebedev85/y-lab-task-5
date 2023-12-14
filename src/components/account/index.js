@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import 'style.css';
 
 function Account(props) {
-  const cn = bem('account');
+  const cn = bem('Account');
   const t = props.t;
 
   const callbacks = {
@@ -20,7 +20,7 @@ function Account(props) {
 
   return (
     <div className={cn()}>
-      {props.username && <Link to="/profile">{props.username}</Link>}
+      {props.username && <Link className={cn('link')} to="/profile">{props.username}</Link>}
       <button onClick={props.username ? callbacks.onLogout : callbacks.onLoginNavigate}>
         {props.username ? t('user.logout') : t('user.login')}
       </button>

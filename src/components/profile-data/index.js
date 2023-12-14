@@ -9,21 +9,20 @@ function ProfileData(props) {
   const cn = bem('profileData')
   return (
     <div className={cn()}>
-      <h2 className={cn('title')}>{t('profile.title')}</h2>
-      <div className={cn('data')}>
-        <div className={cn('name')}>
-          <span className={cn('name-title')}>{t('profile.name')}: </span>
-          <span className={cn('name-value')}>{user.profile?.name}</span>
-        </div>
-        <div className={cn('phone')}>
-          <span className={cn('phone-title')}>{t('profile.phone')}: </span>
-          <span className={cn('phone-value')}>{user.profile?.phone}</span>
-        </div>
-        <div className={cn('email')}>
-          <span className={cn('email-title')}>email: </span>
-          <span className={cn('email-value')}>{user.email}</span>
-        </div>
+      <span className={cn('title')}>{t('profile.title')}</span>
+      <div className={cn('prop')}>
+        <span className={cn('label')}>{t('profile.name')}: </span>
+        <span className={cn('value')}>{user.profile?.name}</span>
       </div>
+      <div className={cn('prop')}>
+        <span className={cn('label')}>{t('profile.phone')}: </span>
+        <span className={cn('value')}>{user.profile?.phone}</span>
+      </div>
+      <div className={cn('prop')}>
+        <span className={cn('label')}>email: </span>
+        <span className={cn('value')}>{user.email}</span>
+      </div>
+
     </div >
   )
 }
