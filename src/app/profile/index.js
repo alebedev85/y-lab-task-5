@@ -24,6 +24,7 @@ function Profile() {
     username: state.auth.username,
     token: state.auth.token,
     user: state.auth.user,
+    waiting: state.auth.waiting
   }));
 
   useEffect(() => {

@@ -10,15 +10,10 @@ import User from '../../components/account';
 import useSelector from '../../hooks/use-selector';
 import { useNavigate } from "react-router-dom";
 
-/**
- * Главная страница - первичная загрузка каталога
- */
 function Login() {
   const navigate = useNavigate();
   const store = useStore();
   const prevPath = new URLSearchParams(location.search).get('prevPath');
-  // console.log('prevPath: ', prevPath);
-  // console.log(new URLSearchParams(location.pathname).get('prevPath'));
   const select = useSelector(state => ({
     error: state.auth.error,
     token: state.auth.token,

@@ -8,20 +8,10 @@ function Account(props) {
   const cn = bem('Account');
   const t = props.t;
 
-  const callbacks = {
-    onLoginNavigate: (e) => {
-      e.preventDefault();
-      props.onLoginNavigate();
-    },
-    onLogout: () => {
-      props.onLogout();
-    }
-  }
-
   return (
     <div className={cn()}>
       {props.username && <Link className={cn('link')} to="/profile">{props.username}</Link>}
-      <button onClick={props.username ? callbacks.onLogout : callbacks.onLoginNavigate}>
+      <button onClick={props.username ? props.onLogout : props.onLoginNavigate}>
         {props.username ? t('user.logout') : t('user.login')}
       </button>
     </div>

@@ -32,7 +32,7 @@ function Main() {
 
   const callbacks = {
     onLogout: useCallback(() => { store.actions.auth.logout() }, [store]),
-    onLoginNavigate: useCallback(() => { navigate(`/login?prevPath=/`) })
+    onLoginNavigate: useCallback(() => { navigate(`/login?prevPath=${location.pathname}`) })
   }
 
   const { t } = useTranslate();
