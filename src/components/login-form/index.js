@@ -1,4 +1,4 @@
-import React, { useRef, memo, useState } from 'react'
+import React, { memo, useState, useEffect } from 'react'
 import PropTypes from "prop-types";
 import { cn as bem } from '@bem-react/classname'
 import './style.css'
@@ -8,7 +8,13 @@ function LoginForm(props) {
   const cn = bem('LoginForm')
   const [login, setLogin] = useState('')
   const [password, setPassword] = useState('')
+  const [error, setError] = useState(null);
 
+  useEffect(() => {
+    setError(null)
+  }, [])
+
+  console.log('error', error)
 
   const callbacks = {
     onLogin: (e) => {
@@ -20,6 +26,7 @@ function LoginForm(props) {
     onSubmit: (e) => {
       e.preventDefault();
       props.onLogin(login, password);
+      setError(props.error)
     }
   }
 
@@ -42,7 +49,7 @@ function LoginForm(props) {
           value={password}
           onChange={callbacks.onPassword} />
       </label>
-      <div className={cn('error', props.error ? 'active' : '')}>{props.error} </div>
+      <div className={cn('error')}>{error}</div>
       <button type='submit' onClick={callbacks.onSubmit} className={cn('button')}>{t('login.button')}</button>
     </form>
   )

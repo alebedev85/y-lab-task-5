@@ -24,8 +24,6 @@ function CatalogFilter() {
     category: state.catalog.params.category
   }));
 
-  console.log("Катигории: ", typeof select.category)
-
   const callbacks = {
     // Сортировка
     onSort: useCallback(sort => store.actions.catalog.setParams({ sort }), [store]),

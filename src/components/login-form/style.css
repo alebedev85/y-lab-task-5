@@ -25,11 +25,7 @@
 
 .LoginForm-error {
   margin-top: 20px;
-  color: rgba(255, 0, 0, 0);
-}
-
-.LoginForm-error.active {
-  margin-top: 20px;
+  margin-bottom: 17px;
   color: rgba(255, 0, 0, 1);
 }
 

@@ -9,6 +9,7 @@ class AuthState extends StoreModule {
       token,
       user: {},
       username,
+      error: null,
       waiting: false
     }
   }
