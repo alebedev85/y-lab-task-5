@@ -1,4 +1,4 @@
-import { memo, useCallback } from 'react';
+import { memo, useCallback, useEffect } from 'react';
 import useStore from "../../hooks/use-store";
 import useTranslate from "../../hooks/use-translate";
 import Navigation from "../../containers/navigation";
@@ -8,6 +8,7 @@ import LocaleSelect from "../../containers/locale-select";
 import LoginForm from '../../components/login-form';
 import User from '../../components/account';
 import useSelector from '../../hooks/use-selector';
+import Spinner from "../../components/spinner";
 import { useNavigate } from "react-router-dom";
 
 function Login() {
@@ -17,9 +18,14 @@ function Login() {
   const select = useSelector(state => ({
     error: state.auth.error,
     token: state.auth.token,
-    username: state.auth.username
+    username: state.auth.username,
+    waiting: state.auth.waiting,
   }));
   if (select.token) navigate(prevPath || '/');
+
+  useEffect(() => {
+    store.actions.auth.resetError()
+  }, [])
 
   const callbacks = {
     onLogin: useCallback(async (login, password) => {
@@ -43,7 +49,9 @@ function Login() {
         <LocaleSelect />
       </Head>
       <Navigation />
-      <LoginForm onLogin={callbacks.onLogin} error={select.error} t={t} />
+      <Spinner active={select.waiting}>
+        <LoginForm onLogin={callbacks.onLogin} error={select.error} t={t} />
+      </Spinner>
     </PageLayout>
   );
 }

@@ -91,43 +91,15 @@ class AuthState extends StoreModule {
     }
   }
 
-  async loadProfile() {
-    const token = this.getState().token
-    if (!token) return;
-
-    try {
-      const response = await fetch(`/api/v1/users/self?fields=*`,
-        {
-          method: 'GET',
-          headers: {
-            'X-Token': token,
-            'Content-type': 'application/json; charset=UTF-8',
-          },
-        });
-      const json = await response.json();
-
-      if (response.status !== 200) {
-        throw new Error(json.error.data.issues[0].message);
-      }
-
-      // Токен получен
+  resetError() {
+    if (this.getState().error) {
       this.setState({
+        ...this.getState(),
         error: null,
-        token,
-        user: { ...json.result },
-        username: json.result.profile.name,
         waiting: false
-      }, 'Получены данные пользователя из API');
-
-    } catch (e) {
-      // Ошибка при загрузке
-      this.setState({
-        error: e.error,
-        waiting: false
-      }, 'Ошибка получения данных пользователя из API');
+      }, 'Сброс ошибки');
     }
   }
-
 }
 
 export default AuthState;

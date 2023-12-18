@@ -11,9 +11,7 @@ import useSelector from '../../hooks/use-selector';
 import Spinner from "../../components/spinner";
 import { useNavigate } from "react-router-dom";
 
-/**
- * Главная страница - первичная загрузка каталога
- */
+
 function Profile() {
 
   const navigate = useNavigate()
@@ -23,22 +21,18 @@ function Profile() {
   const select = useSelector(state => ({
     username: state.auth.username,
     token: state.auth.token,
-    user: state.auth.user,
-    waiting: state.auth.waiting
+    user: state.profile.user,
+    waiting: state.profile.waiting
   }));
 
   useEffect(() => {
     if (!select.token) {
       navigate(`/login?prevPath=${location.pathname}`)
     }
-    store.actions.auth.loadProfile();
+    store.actions.profile.loadProfile(select.token);
   }, [select.token])
 
-
-
   const callbacks = {
-    // Добавление в корзину
-    addToBasket: useCallback(_id => store.actions.basket.addToBasket(_id), [store]),
     onLogout: useCallback(() => {
       store.actions.auth.logout();
     }, [store])
